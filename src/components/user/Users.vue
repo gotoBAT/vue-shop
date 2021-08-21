@@ -427,7 +427,7 @@ export default {
     setRoleDialogClosed() {
       this.userInfo = {}
       // 已选中的角色Id值
-      thisselectRoleId = ''
+      this.selectRoleId = ''
     },
     async saveRoleInfo() {
       if (!this.selectRoleId) {
@@ -437,8 +437,9 @@ export default {
         `users/${this.userInfo.id}/role`,
         { rid: this.selectRoleId }
       )
+      //console.log(res)
       if (res.meta.status !== 200) {
-        return this.$message.error('更新用户角色失败！')
+        return this.$message.error(res.meta.msg)
       }
       this.$message.success('更新角色成功！')
       this.getUserList()
